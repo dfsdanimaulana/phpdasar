@@ -1,5 +1,15 @@
 <?php
 require 'tools/connection.php';
+
+$sql = 'SELECT * FROM daftar';
+if (isset($_POST["btn_search"])) {
+  $key = $_POST["search"];
+
+  $sql = "SELECT * FROM daftar WHERE nama LIKE '%$key%' OR email LIKE '%$key'";
+
+}
+$data = mysqli_query($conn, $sql);
+
 $no = 1;
 ?>
 
@@ -27,9 +37,9 @@ $no = 1;
   <nav class="navbar navbar-dark bg-dark bg-gradient">
     <div class="container d-flex">
       <a class="navbar-brand" href="#">Lobby</a>
-      <form class="d-flex">
+      <form action="" method="post" class="d-flex">
         <input id="search" name="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <button name="btn_search" class="btn btn-outline-success" type="submit">Search</button>
       </form>
     </div>
   </nav>
