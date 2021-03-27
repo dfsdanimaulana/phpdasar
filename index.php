@@ -12,13 +12,31 @@ require 'tools/connection.php';
 
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-
+  <style>
+    a {
+      outline: none;
+      text-decoration: none;
+      font-family: sans-serif;
+      color: white;
+    }
+  </style>
   <title>Hello, world!</title>
 </head>
 <body>
+  <!--Navbar-->
+  <nav class="navbar navbar-dark bg-dark bg-gradient">
+    <div class="container d-flex">
+      <a class="navbar-brand" href="#">Lobby</a>
+      <form class="d-flex">
+        <input id="search" name="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+  <!--End Navbar-->
   <!-- tables -->
   <div class="container">
-    <table class="table table-striped table-dark mt-3">
+    <table class="table table-striped table-dark mt-3 container">
       <thead>
         <tr>
           <th scope="col">NO</th>
@@ -38,6 +56,10 @@ require 'tools/connection.php';
         <?php endwhile; ?>
       </tbody>
     </table>
+  </div>
+  <div class="d-grid gap-2 container">
+    <button class="btn btn-dark bg-gradient" type="button"><a href="tools/add.php">Tambah Data</a></button>
+    <button class="btn btn-dark bg-gradient" type="button"><a href="tools/update.php">Ubah Data</a></button>
   </div>
   <!-- end tables -->
   <!-- Option 1: Bootstrap Bundle with Popper -->
