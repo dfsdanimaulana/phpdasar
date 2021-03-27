@@ -27,7 +27,7 @@ if (isset($_POST["submit"])) {
     </div>
   </nav>
   <!--End Navbar-->
-  <div class="container">
+  <div class="container my-3">
     <form action="" method="post">
       <div class="mb-3">
         <label for="name" class="form-label">Nama :</label>

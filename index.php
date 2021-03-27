@@ -1,6 +1,6 @@
 <?php
 require 'tools/connection.php';
-
+$no = 1;
 ?>
 
 <!doctype html>
@@ -36,22 +36,22 @@ require 'tools/connection.php';
   <!--End Navbar-->
   <!-- tables -->
   <div class="container">
-    <table class="table table-striped table-dark mt-3 container">
+    <table class="table md table-striped table-dark mt-3 container">
       <thead>
         <tr>
           <th scope="col">NO</th>
+          <th scope="col">Gambar</th>
           <th scope="col">Nama</th>
           <th scope="col">Email</th>
-          <th scope="col">Gambar</th>
         </tr>
       </thead>
       <tbody>
         <?php while ($result = mysqli_fetch_assoc($data)) : ?>
-        <tr>
-          <th scope="row">1</th>
+        <tr class="md">
+          <td scope="row"><?= $no++; ?></td>
+          <td><?= $result['gambar'] ?></td>
           <td><?= $result['nama'] ?></td>
           <td><?= $result['email'] ?></td>
-          <td><?= $result['gambar'] ?></td>
         </tr>
         <?php endwhile; ?>
       </tbody>
