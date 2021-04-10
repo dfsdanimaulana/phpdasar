@@ -29,6 +29,10 @@ $no = 1;
             font-family: sans-serif;
             color: white;
         }
+        img {
+            width: 40px;
+            height: 40px;
+        }
     </style>
     <title>Hello, world!</title>
 </head>
@@ -61,19 +65,19 @@ $no = 1;
                 <tr class="md">
                     <td scope="row"><?= $no++; ?></td>
                     <td><a href="delete.php?id=<?= $result["id"]; ?>">Hapus</a> | <a href="ubah.php">Ubah</a></td>
-                    <td><?= $result['gambar'] ?></td>
-                    <td><?= $result['nama'] ?></td>
-                    <td><?= $result['email'] ?></td>
-                </tr>
-                <?php endwhile; ?>
-            </tbody>
-        </table>
-    </div>
-    <div class="container">
-        <button class="btn btn-dark bg-gradient" type="button"><a href="http://localhost:8080/phpdasar/index.php">Kembali</a></button>
-    </div>
-    <!-- end tables -->
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+                    <td><img src="img/<?= $result['gambar'] ?>" alt="not found"></td></td>
+                <td><?= $result['nama'] ?></td>
+                <td><?= $result['email'] ?></td>
+            </tr>
+            <?php endwhile; ?>
+        </tbody>
+    </table>
+</div>
+<div class="container">
+    <button class="btn btn-dark bg-gradient" type="button"><a href="http://localhost:8080/phpdasar/index.php">Kembali</a></button>
+</div>
+<!-- end tables -->
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 </body>
 </html>
