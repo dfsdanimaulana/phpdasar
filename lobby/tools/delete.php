@@ -3,9 +3,10 @@
 require 'function.php';
 
 $id = $_GET["id"];
-//var_dump($id); die;
+$img = $_GET["gambar"];
 
 if (del($id) > 0) {
+    removeImg($img);
     echo '<script>alert("Delete Success...");document.location.href= "update.php";</script>';
 } else {
     echo '<script>alert("Delete Failed...");document.location.href= "update.php";</script>';

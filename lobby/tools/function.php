@@ -3,11 +3,11 @@ require 'connection.php';
 
 function add($data) {
     global $conn;
-    $name = $data["name"];
-    $email = $data["email"];
+    $name = htmlspecialchars($data["name"]);
+    $email = htmlspecialchars($data["email"]);
     // $gambar = $data["gambar"];
     //upload gambar
-    $gambar = upload();
+    $gambar = htmlspecialchars(upload());
     if (!$gambar) {
         return false;
     }
@@ -25,7 +25,7 @@ function del($id) {
 }
 
 function upload() {
-    $name = $_FILES["gambar"]["name"];
+    $name = htmlspecialchars($_FILES["gambar"]["name"]);
     $size = $_FILES["gambar"]["size"];
     $err = $_FILES["gambar"]["error"];
     $tmp_name = $_FILES["gambar"]["tmp_name"];
@@ -63,9 +63,9 @@ function upload() {
 
 function update($data) {
     global $conn;
-    $id = $data["id"];
-    $name = $data["name"];
-    $email = $data["email"];
+    $id = htmlspecialchars($data["id"]);
+    $name = htmlspecialchars($data["name"]);
+    $email = htmlspecialchars($data["email"]);
     $gambarLama = $data["gambarLama"];
     if ($_FILES["gambar"]["error"] === 4) {
         $gambar = $gambarLama;
@@ -76,4 +76,11 @@ function update($data) {
     $sql = "UPDATE daftar SET id=$id, name='$name', email='$email', gambar='$gambar' WHERE id=$id";
     mysqli_query($conn, $sql);
     return mysqli_affected_rows($conn);
+}
+
+function removeImg($target) {
+    $root = "img/$target";
+    if (file_exists($root)) {
+        unlink($root);
+    }
 }

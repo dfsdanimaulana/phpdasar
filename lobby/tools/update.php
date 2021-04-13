@@ -63,7 +63,7 @@ $no = 1;
                 <?php while ($result = mysqli_fetch_assoc($data)) : ?>
                 <tr class="md">
                     <td scope="row"><?= $no++; ?></td>
-                    <td><a href="delete.php?id=<?= $result['id']; ?>">Hapus</a> | <a href="ubah.php?id=<?= $result['id'] ?>">Ubah</a></td>
+                    <td><a href="delete.php?id=<?= $result['id']; ?>&gambar=<?= $result['gambar'] ?>">Hapus</a> | <a href="ubah.php?id=<?= $result['id'] ?>">Ubah</a></td>
                     <td><img src="img/<?= $result['gambar'] ?>" onerror="this.src='img/Dani.jpg'"></td></td>
                 <td><?= $result['name'] ?></td>
                 <td><?= $result['email'] ?></td>

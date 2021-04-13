@@ -5,12 +5,23 @@ $id = $_GET["id"];
 $sql = "SELECT * FROM daftar WHERE id=$id";
 $query = mysqli_query($conn, $sql);
 $data = mysqli_fetch_assoc($query);
-
+$imgLama = $data["gambar"];
 if (isset($_POST["submit"])) {
     if (update($_POST) > 0) {
-        echo "update success...";
+        removeImg($imgLama);
+        echo
+        "<script>
+        alert('update success...');
+        document.location.href= 'update.php';
+        </script>
+        ";
     } else {
-        echo "update failed...";
+        echo
+        "<script>
+        alert('update failed...');
+        document.location.href= 'update.php';
+        </script>
+        ";
     }
 }
 ?>
@@ -31,7 +42,6 @@ if (isset($_POST["submit"])) {
         }
         img {
             width: 40px;
-            height: 40px;
         }
     </style>
     <title>Ubah Data</title>
@@ -47,7 +57,7 @@ if (isset($_POST["submit"])) {
     <div class="container my-3">
         <form action="" method="post" enctype="multipart/form-data">
             <input type="text" name="id" id="id" value="<?= $data["id"] ?>" hidden>
-            <input type="text" name="gambarLama" id="gambarLama" value="<?= $data["gambar"] ?>" hidden>
+            <input type="text" name="gambarLama" id="gambarLama" value="<?= $imgLama ?>" hidden>
             <div class="mb-3">
                 <label for="name" class="form-label">name :</label>
                 <input type="text" class="form-control" id="name" name="name" value="<?=$data["name"] ?>">
@@ -59,9 +69,11 @@ if (isset($_POST["submit"])) {
             </div>
 
             <div class="mb-3">
-                <img src="img/<?= $data["gambar"] ?>" alt="">
                 <label class="form-label" for="gambar">Gambar :</label>
-                <input type="file" class="form-control" id="gambar" name="gambar">
+                <div id="imagePreview">
+                    <img src="img/<?= $data["gambar"] ?>" onerror="this.src='img/Dani.jpg'">
+                </div>
+                <input type="file" class="form-control" id="gambar" name="gambar" onchange="return fileValidation(this.id)">
             </div>
 
             <button type="submit" id="submit" name="submit" class="btn btn-primary">Submit</button>
@@ -69,5 +81,6 @@ if (isset($_POST["submit"])) {
         </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
 </body>
 </html>

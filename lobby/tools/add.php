@@ -24,6 +24,9 @@ if (isset($_POST["submit"])) {
             font-family: sans-serif;
             color: white;
         }
+        img {
+            width: 40px;
+        }
     </style>
     <title>Tambah Data</title>
 </head>
@@ -49,7 +52,8 @@ if (isset($_POST["submit"])) {
 
             <div class="mb-3">
                 <label class="form-label" for="gambar">Gambar :</label>
-                <input type="file" class="form-control" id="gambar" name="gambar">
+                <div id="imagePreview"></div>
+                <input type="file" class="form-control" id="gambar" name="gambar" onchange="return fileValidation(this.id)">
             </div>
 
             <button type="submit" id="submit" name="submit" class="btn btn-primary">Submit</button>
@@ -58,5 +62,6 @@ if (isset($_POST["submit"])) {
         </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
 </body>
 </html>
