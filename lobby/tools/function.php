@@ -3,7 +3,7 @@ require 'connection.php';
 
 function add($data) {
     global $conn;
-    $nama = $data["name"];
+    $name = $data["name"];
     $email = $data["email"];
     // $gambar = $data["gambar"];
     //upload gambar
@@ -11,7 +11,7 @@ function add($data) {
     if (!$gambar) {
         return false;
     }
-    $add = "INSERT INTO daftar VALUES (NULL,'$nama','$email','$gambar')";
+    $add = "INSERT INTO daftar VALUES (NULL,'$name','$email','$gambar')";
     mysqli_query($conn, $add);
     return mysqli_affected_rows($conn);
 }
@@ -25,7 +25,7 @@ function del($id) {
 }
 
 function upload() {
-    $nama = $_FILES["gambar"]["name"];
+    $name = $_FILES["gambar"]["name"];
     $size = $_FILES["gambar"]["size"];
     $err = $_FILES["gambar"]["error"];
     $tmp_name = $_FILES["gambar"]["tmp_name"];
@@ -39,7 +39,7 @@ function upload() {
     $ekstValid = ['jpg',
         'jpng',
         'png'];
-    $eks = strtolower(end(explode('.', $nama)));
+    $eks = strtolower(end(explode('.', $name)));
     //cek string di array
     if (!in_array($eks, $ekstValid)) {
         echo '<script>alert("bukan gambar!");</script>';
@@ -50,12 +50,29 @@ function upload() {
         echo '<script>alert("terlalu besar!");</script>';
         return false;
     }
-    //ganti nama
-    $newNama = uniqid();
-    $newNama += '.';
-    $newNama += $eks;
+    //ganti name
+    $newname = uniqid();
+    $newname += '.';
+    $newname += $eks;
     //upload ke direktori
-    move_uploaded_file($tmp_name, 'img/'.$newNama);
-    return $newNama;
+    move_uploaded_file($tmp_name, 'img/'.$newname);
+    return $newname;
 
+}
+
+function update($data) {
+    global $conn;
+    $id = $data["id"];
+    $name = $data["name"];
+    $email = $data["email"];
+    $gambarLama = $data["gambarLama"];
+    if ($_FILES["gambar"]["error"] === 4) {
+        $gambar = $gambarLama;
+    } else {
+        $gambar = upload();
+    }
+
+    $sql = "UPDATE daftar SET id=$id, name='$name', email='$email', gambar='$gambar' WHERE id=$id";
+    mysqli_query($conn, $sql);
+    return mysqli_affected_rows($conn);
 }
