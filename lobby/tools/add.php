@@ -38,7 +38,7 @@ if (isset($_POST["submit"])) {
     <div class="container my-3">
         <form action="" method="post" enctype="multipart/form-data">
             <div class="mb-3">
-                <label for="name" class="form-label">Nama :</label>
+                <label for="name" class="form-label">name :</label>
                 <input type="text" class="form-control" id="name" name="name">
             </div>
 

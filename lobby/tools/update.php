@@ -1,11 +1,11 @@
 <?php
-require 'tools/connection.php';
+require 'connection.php';
 
 $sql = 'SELECT * FROM daftar';
 if (isset($_POST["btn_search"])) {
     $key = $_POST["search"];
 
-    $sql = "SELECT * FROM daftar WHERE nama LIKE '%$key%' OR email LIKE '%$key'";
+    $sql = "SELECT * FROM daftar WHERE name LIKE '%$key%' OR email LIKE '%$key%'";
 
 }
 $data = mysqli_query($conn, $sql);
@@ -31,16 +31,15 @@ $no = 1;
         }
         img {
             width: 40px;
-            height: 40px;
         }
     </style>
-    <title>Hello, world!</title>
+    <title>Update Data</title>
 </head>
 <body>
     <!--Navbar-->
     <nav class="navbar navbar-dark bg-dark bg-gradient">
         <div class="container d-flex">
-            <a class="navbar-brand" href="#">Lobby</a>
+            <a class="navbar-brand" href="#">Update Data</a>
             <form action="" method="post" class="d-flex">
                 <input id="search" name="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button name="btn_search" class="btn btn-outline-success" type="submit">Search</button>
@@ -54,8 +53,9 @@ $no = 1;
             <thead>
                 <tr>
                     <th scope="col">NO</th>
+                    <th scope="col">Edit</th>
                     <th scope="col">Gambar</th>
-                    <th scope="col">Nama</th>
+                    <th scope="col">name</th>
                     <th scope="col">Email</th>
                 </tr>
             </thead>
@@ -63,20 +63,20 @@ $no = 1;
                 <?php while ($result = mysqli_fetch_assoc($data)) : ?>
                 <tr class="md">
                     <td scope="row"><?= $no++; ?></td>
-                    <td><img src="tools/img/<?= $result['gambar'] ?>" alt="not found"></td>
-                    <td><?= $result['nama'] ?></td>
-                    <td><?= $result['email'] ?></td>
-                </tr>
-                <?php endwhile; ?>
-            </tbody>
-        </table>
-    </div>
-    <div class="d-grid gap-2 container">
-        <button class="btn btn-dark bg-gradient" type="button"><a href="tools/add.php">Tambah Data</a></button>
-        <button class="btn btn-dark bg-gradient" type="button"><a href="tools/update.php">Ubah Data</a></button>
-    </div>
-    <!-- end tables -->
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+                    <td><a href="delete.php?id=<?= $result['id']; ?>">Hapus</a> | <a href="ubah.php?id=<?= $result['id'] ?>">Ubah</a></td>
+                    <td><img src="img/<?= $result['gambar'] ?>" alt="not found"></td></td>
+                <td><?= $result['name'] ?></td>
+                <td><?= $result['email'] ?></td>
+            </tr>
+            <?php endwhile; ?>
+        </tbody>
+    </table>
+</div>
+<div class="container">
+    <button class="btn btn-dark bg-gradient" type="button"><a href="http://localhost:8080/phpdasar/index.php">Kembali</a></button>
+</div>
+<!-- end tables -->
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 </body>
 </html>
