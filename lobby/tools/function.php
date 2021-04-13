@@ -39,12 +39,8 @@ function upload() {
     $ekstValid = ['jpg',
         'jpng',
         'png'];
-<<<<<<< HEAD:tools/function.php
-    $eks = end(explode('.', $nama));
+    $eks = end(explode('.', $name));
     $eks = strtolower($eks);
-=======
-    $eks = strtolower(end(explode('.', $name)));
->>>>>>> c23c3c8d6851b28a719b5f018ca35b59144419e9:lobby/tools/function.php
     //cek string di array
     if (!in_array($eks, $ekstValid)) {
         echo '<script>alert("bukan gambar!");</script>';
@@ -55,17 +51,10 @@ function upload() {
         echo '<script>alert("terlalu besar!");</script>';
         return false;
     }
-<<<<<<< HEAD:tools/function.php
     //ganti nama
-    $newNama = uniqid();
-    $newNama .= '.';
-    $newNama .= $eks;
-=======
-    //ganti name
     $newname = uniqid();
-    $newname += '.';
-    $newname += $eks;
->>>>>>> c23c3c8d6851b28a719b5f018ca35b59144419e9:lobby/tools/function.php
+    $newname .= '.';
+    $newname .= $eks;
     //upload ke direktori
     move_uploaded_file($tmp_name, 'img/'.$newname);
     return $newname;

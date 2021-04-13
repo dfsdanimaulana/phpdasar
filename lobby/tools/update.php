@@ -64,7 +64,7 @@ $no = 1;
                 <tr class="md">
                     <td scope="row"><?= $no++; ?></td>
                     <td><a href="delete.php?id=<?= $result['id']; ?>">Hapus</a> | <a href="ubah.php?id=<?= $result['id'] ?>">Ubah</a></td>
-                    <td><img src="img/<?= $result['gambar'] ?>" alt="not found"></td></td>
+                    <td><img src="img/<?= $result['gambar'] ?>" onerror="this.src='img/Dani.jpg'"></td></td>
                 <td><?= $result['name'] ?></td>
                 <td><?= $result['email'] ?></td>
             </tr>
@@ -73,7 +73,7 @@ $no = 1;
     </table>
 </div>
 <div class="container">
-    <button class="btn btn-dark bg-gradient" type="button"><a href="http://localhost:8080/phpdasar/index.php">Kembali</a></button>
+    <button class="btn btn-dark bg-gradient" type="button"><a href="../index.php">Kembali</a></button>
 </div>
 <!-- end tables -->
 <!-- Option 1: Bootstrap Bundle with Popper -->

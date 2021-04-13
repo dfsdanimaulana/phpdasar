@@ -62,7 +62,7 @@ $no = 1;
                 <?php while ($result = mysqli_fetch_assoc($data)) : ?>
                 <tr class="md">
                     <td scope="row"><?= $no++; ?></td>
-                    <td><img src="tools/img/<?= $result['gambar'] ?>" alt="not found"></td>
+                    <td><img src="tools/img/<?= $result['gambar'] ?>" onerror="this.src='tools/img/Dani.jpg'"></td>
                     <td><?= $result['name'] ?></td>
                     <td><?= $result['email'] ?></td>
                 </tr>
