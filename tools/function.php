@@ -39,7 +39,8 @@ function upload() {
     $ekstValid = ['jpg',
         'jpng',
         'png'];
-    $eks = strtolower(end(explode('.', $nama)));
+    $eks = end(explode('.', $nama));
+    $eks = strtolower($eks);
     //cek string di array
     if (!in_array($eks, $ekstValid)) {
         echo '<script>alert("bukan gambar!");</script>';
@@ -52,8 +53,8 @@ function upload() {
     }
     //ganti nama
     $newNama = uniqid();
-    $newNama += '.';
-    $newNama += $eks;
+    $newNama .= '.';
+    $newNama .= $eks;
     //upload ke direktori
     move_uploaded_file($tmp_name, 'img/'.$newNama);
     return $newNama;
