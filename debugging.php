@@ -1,8 +1,12 @@
 <?php
+require 'lobby/tools/function.php';
 if (isset($_POST["submit"])) {
     var_dump($_FILES);
 }
+$test = checkUser('deni')[1];
+var_dump($test);
 
+//check password = password_verify(input, hashed pw)
 ?>
 
 <!DOCTYPE html>

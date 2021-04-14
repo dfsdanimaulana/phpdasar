@@ -84,3 +84,42 @@ function removeImg($target) {
         unlink($root);
     }
 }
+
+function checkUser($name) {
+    global $conn;
+    $sql = "SELECT username,password FROM list_user WHERE username='$name'";
+    $res = mysqli_query($conn, $sql);
+    $data = mysqli_fetch_row($res);
+    return $data;
+}
+function checkEmail($email) {
+    global $conn;
+    $sql = "SELECT email FROM list_user WHERE email='$email'";
+    $res = mysqli_query($conn, $sql);
+    $data = mysqli_fetch_assoc($res);
+    return $data;
+}
+
+function signUp($data) {
+    global $conn;
+    $name = htmlspecialchars($data["username"]);
+    $email = htmlspecialchars($data["email"]);
+    $pw = password_hash($data["password"], PASSWORD_DEFAULT);
+    $password = $data["password"];
+    $pwCheck = htmlspecialchars($data["passwordCheck"]);
+    if ($password != $pwCheck) {
+        echo "check password tidak sesuai...";
+        return false;
+    }
+    if (checkUser($name)[0]) {
+        echo "User Already exists...";
+        return false;
+    }
+    if (checkEmail($email)) {
+        echo "Email Already exists";
+        return false;
+    }
+    $sql = "INSERT INTO list_user VALUES (NULL,'$name','$email','$pw')";
+    mysqli_query($conn, $sql);
+    return mysqli_affected_rows($conn);
+}
