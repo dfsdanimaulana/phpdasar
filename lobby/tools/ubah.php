@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (!$_SESSION["login"]) {
+    header('Location: ../login.php');
+    exit;
+}
 require 'function.php';
 require 'connection.php';
 $id = $_GET["id"];
@@ -12,16 +17,16 @@ if (isset($_POST["submit"])) {
         echo
         "<script>
         alert('update success...');
-        document.location.href= 'update.php';
-        </script>
-        ";
+        </script>";
+        header('Location: update.php');
+        exit;
     } else {
         echo
         "<script>
         alert('update failed...');
-        document.location.href= 'update.php';
-        </script>
-        ";
+        </script>";
+        header('Location: update.php');
+        exit;
     }
 }
 ?>

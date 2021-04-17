@@ -87,7 +87,7 @@ function removeImg($target) {
 
 function checkUser($name) {
     global $conn;
-    $sql = "SELECT username,password FROM list_user WHERE username='$name'";
+    $sql = "SELECT username,password,id FROM list_user WHERE username='$name'";
     $res = mysqli_query($conn, $sql);
     $data = mysqli_fetch_row($res);
     return $data;
@@ -97,6 +97,13 @@ function checkEmail($email) {
     $sql = "SELECT email FROM list_user WHERE email='$email'";
     $res = mysqli_query($conn, $sql);
     $data = mysqli_fetch_assoc($res);
+    return $data;
+}
+function checkUsernameById($id) {
+    global $conn;
+    $sql = "SELECT username FROM list_user WHERE id=$id";
+    $res = mysqli_query($conn, $sql);
+    $data = mysqli_fetch_row($res);
     return $data;
 }
 

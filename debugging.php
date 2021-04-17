@@ -1,5 +1,8 @@
 <?php
 require 'lobby/tools/function.php';
+
+$data = checkUsernameById(1)[3];
+var_dump($data); die;
 if (isset($_POST["submit"])) {
     var_dump($_FILES);
 }

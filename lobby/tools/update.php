@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (!$_SESSION["login"]) {
+    header('Location:../login.php');
+    exit;
+}
 require 'connection.php';
 
 $sql = 'SELECT * FROM daftar';

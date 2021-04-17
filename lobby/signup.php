@@ -3,6 +3,8 @@ require 'tools/function.php';
 if (isset($_POST["submit"])) {
     if (signUp($_POST) > 0) {
         echo "Sign Up Succes...";
+        header('Location: login.php');
+        exit;
     } else {
         echo "sign up failed...";
     }
@@ -20,6 +22,12 @@ if (isset($_POST["submit"])) {
     <style>
         body {
             background-color: #eaeaea;
+        }
+        a {
+            outline: none;
+            text-decoration: none;
+            font-family: sans-serif;
+            color: white;
         }
     </style>
     <title>Sign Up</title>
@@ -53,12 +61,9 @@ if (isset($_POST["submit"])) {
                 <label for="passwordCheck" class="form-label">Check Password :</label>
                 <input type="password" class="form-control shadow-sm" id="passwordCheck" name="passwordCheck" required>
             </div>
-            <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="checkBox">
-                <label class="form-check-label " for="checkBox">Remember me</label>
-            </div>
-            <div class="d-flex flex-row-reverse">
+            <div class="d-flex flex-row-reverse mx-2">
                 <button type="submit" class="btn btn-primary mb-3 shadow-sm" id="submit" name="submit">Submit</button>
+                <button type="button" class="btn btn-primary mb-3 shadow-sm"><a href="login.php">Kembali</a></button>
             </div>
         </form>
     </div>
