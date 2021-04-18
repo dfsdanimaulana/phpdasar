@@ -19,18 +19,17 @@ $halaman = isset($_GET["halaman"])?(int)$_GET["halaman"]:1;
 $halaman_awal = ($halaman > 1)?($halaman*$batas)-$batas:0;
 
 $sql = 'SELECT * FROM daftar';
-if (isset($_POST["btn_search"])) {
-    $key = $_POST["search"];
-
-    $sql = "SELECT * FROM daftar WHERE name LIKE '%$key%' OR email LIKE '%$key%'";
-
-}
 $data = mysqli_query($conn, $sql);
 
 $jumlah_data = mysqli_num_rows($data);
 $total_halaman = ceil($jumlah_data/$batas);
 //query data yg muncul di tiap halaman
-$data_per_halaman = mysqli_query($conn, "SELECT * FROM daftar LIMIT $halaman_awal, $batas");
+$query = "SELECT * FROM daftar LIMIT $halaman_awal, $batas";
+if (isset($_POST["btn_search"])) {
+    $key = $_POST["search"];
+    $query = "SELECT * FROM daftar WHERE name LIKE '%$key%' OR email LIKE '%$key%' LIMIT $halaman_awal, $batas";
+}
+$data_per_halaman = mysqli_query($conn, $query);
 $no = $halaman_awal+1;
 ?>
 
@@ -43,17 +42,7 @@ $no = $halaman_awal+1;
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-    <style>
-        a {
-            outline: none;
-            text-decoration: none;
-            font-family: sans-serif;
-            color: white;
-        }
-        img {
-            width: 40px;
-        }
-    </style>
+    <link rel="stylesheet" href="tools/css/style.css">
     <title>My Data : Lobby</title>
 </head>
 <body>

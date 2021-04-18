@@ -1,0 +1,11 @@
+a {
+    outline: none;
+    text-decoration: none;
+    font-family: sans-serif;
+    color: white;
+}
+img {
+    width: 50px;
+    border: 1px solid;
+    border-radius: 2px;
+}
