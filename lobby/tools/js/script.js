@@ -17,3 +17,16 @@ function fileValidation(id) {
         }
     }
 }
+
+var input = document.getElementById('search');
+var data = document.getElementById('box');
+input.addEventListener('keyup', function () {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            data.innerHTML = xhr.responseText;
+        }
+    };
+    xhr.open('GET', 'data/data.php?keyword=' + input.value, true);
+    xhr.send();
+});
