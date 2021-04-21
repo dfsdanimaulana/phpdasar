@@ -3,6 +3,7 @@ require '../tools/function.php';
 $key = $_GET["keyword"];
 $sql = "SELECT * FROM daftar WHERE name LIKE '%$key%' OR email LIKE '%$key%'";
 $data = mysqli_query($conn, $sql);
+$no = 1;
 ?>
 <table class="table md table-striped table-dark mt-3 container">
     <thead>

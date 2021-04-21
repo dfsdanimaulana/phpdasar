@@ -6,14 +6,14 @@ if (isset($_COOKIE['id'])) {
         $_SESSION["login"] = true;
     }
 }
-if ($_SESSION["login"]) {
+if (isset($_SESSION["login"])) {
     header('Location: index.php');
     exit;
 }
 if (isset($_POST["submit"])) {
     $nama = $_POST["username"];
     $pw = $_POST["password"];
-    if (!checkUser($nama)[0]) {
+    if (!isset(checkUser($nama)[0])) {
         echo "User Not Found";
     } else {
         if (password_verify($pw, checkUser($nama)[1])) {

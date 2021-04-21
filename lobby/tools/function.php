@@ -39,7 +39,8 @@ function upload() {
     $ekstValid = ['jpg',
         'jpng',
         'png'];
-    $eks = end(explode('.', $name));
+    $exp = explode('.', $name);
+    $eks = end($exp);
     $eks = strtolower($eks);
     //cek string di array
     if (!in_array($eks, $ekstValid)) {
@@ -118,7 +119,7 @@ function signUp($data) {
         echo "check password tidak sesuai...";
         return false;
     }
-    if (checkUser($name)[0]) {
+    if (isset(checkUser($name)[0])) {
         echo "User Already exists...";
         return false;
     }
